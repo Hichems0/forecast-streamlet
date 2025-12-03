@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+cache/
+*.log
+
+# Model files (trop gros pour GitHub)
+*.h5
+*.pkl
+*.joblib
+
+# Data files (optionnel)
+*.csv
+*.xlsx
+data/
+new/
+
+# Packages
+*.tar.gz
+*.zip
+streamlit-app-package/
+
+# Modal
+.modal/
+
+# Secrets (ne JAMAIS commiter en public)
+# Note: .streamlit/secrets.toml sera ajouté manuellement car nécessaire pour déploiement
