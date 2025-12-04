@@ -13,21 +13,30 @@ import streamlit as st
 import pandas as pd
 
 # Configuration
-TEMP_DIR = Path("cache")
-TEMP_DIR.mkdir(parents=True, exist_ok=True)
+# Utilise un répertoire temporaire compatible avec Streamlit Cloud
+import tempfile
+TEMP_DIR = Path(tempfile.gettempdir()) / "forecast_cache"
+try:
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    TEMP_DIR = Path(tempfile.gettempdir())  # Fallback au répertoire système temporaire
 
-# Logger
-LOG_PATH = TEMP_DIR / "streamlit_app.log"
+# Logger (optionnel, désactivé sur Streamlit Cloud)
 logger = logging.getLogger("StreamlitApp")
 logger.setLevel(logging.INFO)
-if not logger.handlers:
-    fh = logging.FileHandler(LOG_PATH, encoding="utf-8")
-    fmt = logging.Formatter(
-        "[%(asctime)s] [%(levelname)s] %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-    fh.setFormatter(fmt)
-    logger.addHandler(fh)
+try:
+    LOG_PATH = TEMP_DIR / "streamlit_app.log"
+    if not logger.handlers:
+        fh = logging.FileHandler(LOG_PATH, encoding="utf-8")
+        fmt = logging.Formatter(
+            "[%(asctime)s] [%(levelname)s] %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S",
+        )
+        fh.setFormatter(fmt)
+        logger.addHandler(fh)
+except Exception:
+    # Si le logging fichier échoue (Streamlit Cloud), utiliser juste le logger de base
+    pass
 
 # =========================
 # Configuration API Modal
