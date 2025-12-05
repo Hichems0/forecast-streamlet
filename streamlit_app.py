@@ -529,7 +529,10 @@ if uploaded_file is not None:
             if result["model_used"] == "BayesianLSTM":
                 label = "Trajectoire simulée (MC Dropout)"
                 color = "rgba(124, 252, 0, 0.9)"
-            else:
+            elif result["model_used"] == "SparseSpikeForecaster":
+                label = "Pics périodiques simulés"
+                color = "rgba(255, 165, 0, 0.9)"  # Orange
+            else:  # IntermittentForecaster
                 label = "Scénario simulé 0/spikes"
                 color = "rgba(255, 0, 0, 0.9)"
 
