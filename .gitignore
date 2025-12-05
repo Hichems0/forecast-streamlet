@@ -51,3 +51,4 @@ streamlit-app-package/
 
 # Secrets (ne JAMAIS commiter en public)
 # Note: .streamlit/secrets.toml sera ajouté manuellement car nécessaire pour déploiement
+.streamlit/secrets.toml
