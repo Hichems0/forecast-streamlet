@@ -44,7 +44,10 @@ except Exception:
 
 # IMPORTANT: Remplacez cette URL par votre URL Modal après déploiement
 # Format: https://YOUR-USERNAME--forecast-api-predict-api.modal.run
-MODAL_API_URL = st.secrets.get("MODAL_API_URL", "http://localhost:8000")  # À configurer dans .streamlit/secrets.toml
+try:
+    MODAL_API_URL = st.secrets["MODAL_API_URL"]
+except (KeyError, FileNotFoundError):
+    MODAL_API_URL = "https://hichemsaada0--forecast-api-predict-api.modal.run"  # Default
 
 # =========================
 # Fonctions utilitaires
